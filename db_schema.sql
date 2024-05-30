@@ -23,7 +23,7 @@ create table questions(
 
 create table quizscore(
     id int not null auto_increment primary key,
-    studentid int,
+    studentid int unique,
     score int,
     foreign key (studentid) references  students(id)
 );
