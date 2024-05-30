@@ -1,5 +1,8 @@
 package com.quizapp.display;
 
+import com.quizapp.Student;
+import com.quizapp.operations.AdminOperations;
+
 import java.util.Scanner;
 
 public class AdminDisplay {
@@ -25,6 +28,9 @@ public class AdminDisplay {
                 break;
             case 3:
 //                addQuestion();
+            case 0:
+                AppDisplay appDisplay = new AppDisplay();
+                appDisplay.welcome();
         }
         System.out.println("Do you want to do other operations? (Y/N)");
         String ifFutherOps = scanner.next();
@@ -36,6 +42,20 @@ public class AdminDisplay {
     private void displayStudentScoreById() {
         System.out.println("Enter student ID");
         int studentID = scanner.nextInt();
-        getStudentScoreById();
+        Student student = AdminOperations.getStudentById(studentID);
+        if (student != null) {
+            int score = AdminOperations.getStudentScoreById(studentID);
+            if (score != -1) {
+                String msg = "Student id = " + studentID + " :: " + student.getFirstname() + " " + student.getLastname()
+                        + " score is = " + score;
+                System.out.println(msg);
+            } else {
+                System.out.println("Student id = " + studentID + " :: " + student.getFirstname() + " " + student.getLastname()
+                        + "has not attempted the quiz yet");
+            }
+        } else {
+            System.out.println("No such student exists");
+        }
     }
+
 }
