@@ -23,7 +23,7 @@ public class AdminDisplay {
         scanner.nextLine();
         switch (choice) {
             case 1:
-//                displayAllStudentsScoreInAscOrder();
+                AdminOperations.displayAllStudentsScoreInAscOrder();
                 break;
             case 2:
                 displayStudentScoreById();
