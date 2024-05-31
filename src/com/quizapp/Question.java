@@ -1,11 +1,16 @@
 package com.quizapp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Question {
     private String query;
     private List<String> options;
     private int answerkey;
+
+    public Question() {
+        this.options = new ArrayList<>();
+    }
 
     public Question(String query, List<String> options, int answerkey) {
         this.query = query;

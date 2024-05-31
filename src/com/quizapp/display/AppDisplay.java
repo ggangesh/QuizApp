@@ -11,6 +11,7 @@ public class AppDisplay {
         System.out.println("1. Student  or else as ");
         System.out.println("2. Admin?");
         int role = scanner.nextInt();
+        scanner.nextLine();
         switch (role) {
             case 1:
                 break;

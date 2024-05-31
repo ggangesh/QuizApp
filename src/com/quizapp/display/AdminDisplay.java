@@ -1,5 +1,6 @@
 package com.quizapp.display;
 
+import com.quizapp.Question;
 import com.quizapp.Student;
 import com.quizapp.operations.AdminOperations;
 
@@ -19,6 +20,7 @@ public class AdminDisplay {
         System.out.println(" 3. Add question for quiz");
         System.out.println(" 0. OR Go to App Home");
         int choice = scanner.nextInt();
+        scanner.nextLine();
         switch (choice) {
             case 1:
 //                displayAllStudentsScoreInAscOrder();
@@ -27,21 +29,43 @@ public class AdminDisplay {
                 displayStudentScoreById();
                 break;
             case 3:
-//                addQuestion();
+                getQuestionAndAdd();
+                break;
             case 0:
                 AppDisplay appDisplay = new AppDisplay();
                 appDisplay.welcome();
         }
         System.out.println("Do you want to do other operations? (Y/N)");
         String ifFutherOps = scanner.next();
+        scanner.nextLine();
         if (ifFutherOps.equalsIgnoreCase("Y")) {
             allOperations("");
+        }
+    }
+
+    private void getQuestionAndAdd() {
+        System.out.println("Enter the question : ");
+        Question question = new Question();
+        String questionQuery = scanner.nextLine();
+        question.setQuery(questionQuery);
+        for (int i = 1; i < 5; i++) {
+            System.out.println("Enter option " + i + " : ");
+            question.getOptions().add(scanner.nextLine());
+        }
+        System.out.println("Enter correct option (1 - 4)");
+        question.setAnswerkey(scanner.nextInt());
+        scanner.nextLine();
+        if (AdminOperations.addQuestion(question)) {
+            System.out.println("Successfully added the question. Total questions present now = " + AdminOperations.getCountOfQuestionsAdded());
+        } else {
+            System.out.println("Failed in adding the question.Please retry.");
         }
     }
 
     private void displayStudentScoreById() {
         System.out.println("Enter student ID");
         int studentID = scanner.nextInt();
+        scanner.nextLine();
         Student student = AdminOperations.getStudentById(studentID);
         if (student != null) {
             int score = AdminOperations.getStudentScoreById(studentID);
@@ -57,5 +81,4 @@ public class AdminDisplay {
             System.out.println("No such student exists");
         }
     }
-
 }
