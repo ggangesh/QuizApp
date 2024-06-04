@@ -1,7 +1,12 @@
 package com.quizapp;
 
-public class Main extends Student {
-    public static void main(String[] args) {
+import com.quizapp.display.AppDisplay;
 
-    }
+
+public class Main {
+
+	public static void main(String[] args) {
+		AppDisplay display = new AppDisplay();
+		display.appDisplay();
+	}
 }
