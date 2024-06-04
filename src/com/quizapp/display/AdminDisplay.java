@@ -3,6 +3,7 @@ package com.quizapp.display;
 import com.quizapp.Question;
 import com.quizapp.Student;
 import com.quizapp.operations.AdminOperations;
+import com.quizapp.operations.ScoreasASEOrder;
 
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ public class AdminDisplay {
         scanner.nextLine();
         switch (choice) {
             case 1:
-                AdminOperations.displayAllStudentsScoreInAscOrder();
+                ScoreasASEOrder.displayAllStudentsScoreInAscOrder();
                 break;
             case 2:
                 displayStudentScoreById();
@@ -34,6 +35,7 @@ public class AdminDisplay {
             case 0:
                 AppDisplay appDisplay = new AppDisplay();
                 appDisplay.welcome();
+                break;
         }
         System.out.println("Do you want to do other operations? (Y/N)");
         String ifFutherOps = scanner.next();
