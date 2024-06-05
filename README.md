@@ -18,7 +18,7 @@ So that it creates table in our db specfied in application properties
 Then run the project as java application.
 
 Members & Contributions:
- - Gangesh Gudmalwar  - 
- - Pranoti Naiknaware -
- - Prasad Ghegade     -
- - Giridhar           -
+ - Gangesh Gudmalwar  - Admin GetStudentScoreByID , AddQuestions with display ,FileHandler
+ - Pranoti Naiknaware - Admin getScoresInAscOrder
+ - Prasad Ghegade     - AppDisplay
+ - Giridhar           - Student Registration,login,Quiz  
