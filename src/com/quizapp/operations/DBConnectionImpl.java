@@ -13,7 +13,7 @@ public class DBConnectionImpl implements DBConnection {
         Properties prop = PropHandler.getApplicationProperties();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(prop.getProperty("db.url") + "/" + prop.getProperty("db.schema","quizdb"),
+            connection = DriverManager.getConnection(prop.getProperty("db.url") + "/" + prop.getProperty("db.schema", "quizdb"),
                     prop.getProperty("db.username", "root"),
                     prop.getProperty("db.password", "root"));
         } catch (ClassNotFoundException e) {

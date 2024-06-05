@@ -1,6 +1,6 @@
 # QuizApp
 
-Description:
+## Description:
 This is Quiz application with Student and admin roles.
 It has following functionalities:
 1. Store 10 Java related question with answers into database
@@ -10,14 +10,19 @@ It has following functionalities:
 5. Display list of student id, name with score in sorting order
 6. Fetch student details by using student id.
 
-Project StartUp:
+
+## Requirements :
+- #### Add 8.0.32+ mysql-connecter-j-{{version}}.jar in projects buildpath
+
+## Project StartUp:
 1. Import db_schema.sql into sql application
 2. Run this sql file.
-So that it creates table in our db specfied in application properties
+   So that it creates table in our db specfied in application properties
+3. Change application properties such as : db.url,db.username,db.password
 
 Then run the project as java application.
 
-Members & Contributions:
+## Members & Contributions:
  - Gangesh Gudmalwar  - Admin GetStudentScoreByID , AddQuestions with display ,FileHandler
  - Pranoti Naiknaware - Admin getScoresInAscOrder
  - Prasad Ghegade     - AppDisplay

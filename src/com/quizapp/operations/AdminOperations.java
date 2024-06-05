@@ -10,7 +10,7 @@ public class AdminOperations {
         int score = -1;
         String sqlQuery = "select score from quizscore where studentid=?";
         Connection conn = (new DBConnectionImpl()).getConnection();
-        PreparedStatement preparedStmt = null;
+        PreparedStatement preparedStmt;
         try {
             preparedStmt = conn.prepareStatement(sqlQuery);
             preparedStmt.setInt(1, id);
@@ -28,7 +28,7 @@ public class AdminOperations {
         Student student = null;
         String sqlQuery = "select * from students where id=?";
         Connection conn = (new DBConnectionImpl()).getConnection();
-        PreparedStatement preparedStmt = null;
+        PreparedStatement preparedStmt;
         try {
             preparedStmt = conn.prepareStatement(sqlQuery);
             preparedStmt.setInt(1, id);
@@ -51,7 +51,7 @@ public class AdminOperations {
         String sqlQuery = "insert into questions(query, option1, option2, option3, option4, answerkey) " +
                 "values (?,?,?,?,?,?)";
         Connection conn = (new DBConnectionImpl()).getConnection();
-        PreparedStatement preparedStmt = null;
+        PreparedStatement preparedStmt;
         try {
             preparedStmt = conn.prepareStatement(sqlQuery);
             preparedStmt.setString(1, question.getQuery());
@@ -62,7 +62,7 @@ public class AdminOperations {
             preparedStmt.setInt(6, question.getAnswerkey());
 
             int rows = preparedStmt.executeUpdate();
-            if(rows == 1){
+            if (rows == 1) {
                 return true;
             }
             preparedStmt.close();
@@ -73,15 +73,15 @@ public class AdminOperations {
         return false;
     }
 
-    public static int getCountOfQuestionsAdded(){
+    public static int getCountOfQuestionsAdded() {
         String sqlQuery = "select count(id) from questions";
         Connection conn = (new DBConnectionImpl()).getConnection();
-        Statement statement = null;
+        Statement statement;
         int countQuestions = 0;
         try {
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery(sqlQuery);
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 countQuestions = resultSet.getInt(1);
             }
             statement.close();

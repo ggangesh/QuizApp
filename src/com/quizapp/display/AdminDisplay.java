@@ -35,7 +35,7 @@ public class AdminDisplay {
                 getQuestionsAndAdd();
                 break;
             case 0:
-                appDisplay.appDisplay();
+                appDisplay.appDisplay("Login as : ");
                 break;
         }
         System.out.println("Do you want to do other operations? (Y/N)");
@@ -43,8 +43,8 @@ public class AdminDisplay {
         scanner.nextLine();
         if (ifFutherOps.equalsIgnoreCase("Y")) {
             allOperations("");
-        }else{
-            appDisplay.appDisplay();
+        } else {
+            appDisplay.appDisplay("Login as : ");
         }
     }
 
@@ -53,12 +53,12 @@ public class AdminDisplay {
         int countQuestionPresent = AdminOperations.getCountOfQuestionsAdded();
         int questionsAddedNow = 0;
         System.out.println("Add Qustions for quiz (max 10) Currently present :" + AdminOperations.getCountOfQuestionsAdded());
-        do{
-            if(getQuestionAndAdd()){
+        do {
+            if (getQuestionAndAdd()) {
                 questionsAddedNow++;
             }
             System.out.print("Want to add another question(Y/N)");
-        }while(scanner.nextLine().equalsIgnoreCase("Y") && (countQuestionPresent + questionsAddedNow < 10));
+        } while (scanner.nextLine().equalsIgnoreCase("Y") && (countQuestionPresent + questionsAddedNow < 10));
     }
 
     private boolean getQuestionAndAdd() {
@@ -70,7 +70,7 @@ public class AdminDisplay {
             System.out.print("Enter option " + i + " : ");
             question.getOptions().add(scanner.nextLine());
         }
-        System.out.print("Enter correct option (1 - 4)");
+        System.out.print("Enter correct option (1 - 4) : ");
         question.setAnswerkey(scanner.nextInt());
         scanner.nextLine();
         if (AdminOperations.addQuestion(question)) {
