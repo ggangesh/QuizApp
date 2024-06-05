@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class AppDisplay {
     Scanner scanner = new Scanner(System.in);
 
-    public void welcome() {
+    public void appDisplay() {
+        System.out.println("---------------------------------------------------------");
         System.out.println("Welcome to QuizApp");
         System.out.println("How would you like to visit as ?");
         System.out.println("1. Student  or else as ");
@@ -14,6 +15,8 @@ public class AppDisplay {
         scanner.nextLine();
         switch (role) {
             case 1:
+                StudentDisplay studentDisplay = new StudentDisplay();
+                studentDisplay.diplayLoginAndRegistration("");
                 break;
             case 2:
                 AdminDisplay admin = new AdminDisplay();

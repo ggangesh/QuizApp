@@ -11,6 +11,8 @@ public class AdminDisplay {
     Scanner scanner = new Scanner(System.in);
 
     public void allOperations(String msg) {
+        System.out.println("---------------------------------------------------------");
+        AppDisplay appDisplay = new AppDisplay();
         if (msg == null) {
             System.out.println("Hi Admin, You may perform these operations");
         } else {
@@ -30,11 +32,10 @@ public class AdminDisplay {
                 displayStudentScoreById();
                 break;
             case 3:
-                getQuestionAndAdd();
+                getQuestionsAndAdd();
                 break;
             case 0:
-                AppDisplay appDisplay = new AppDisplay();
-                appDisplay.welcome();
+                appDisplay.appDisplay();
                 break;
         }
         System.out.println("Do you want to do other operations? (Y/N)");
@@ -42,25 +43,42 @@ public class AdminDisplay {
         scanner.nextLine();
         if (ifFutherOps.equalsIgnoreCase("Y")) {
             allOperations("");
+        }else{
+            appDisplay.appDisplay();
         }
     }
 
-    private void getQuestionAndAdd() {
-        System.out.println("Enter the question : ");
+    private void getQuestionsAndAdd() {
+        System.out.println("---------------------------------------------------------");
+        int countQuestionPresent = AdminOperations.getCountOfQuestionsAdded();
+        int questionsAddedNow = 0;
+        System.out.println("Add Qustions for quiz (max 10) Currently present :" + AdminOperations.getCountOfQuestionsAdded());
+        do{
+            if(getQuestionAndAdd()){
+                questionsAddedNow++;
+            }
+            System.out.print("Want to add another question(Y/N)");
+        }while(scanner.nextLine().equalsIgnoreCase("Y") && (countQuestionPresent + questionsAddedNow < 10));
+    }
+
+    private boolean getQuestionAndAdd() {
+        System.out.print("Enter the question : ");
         Question question = new Question();
         String questionQuery = scanner.nextLine();
         question.setQuery(questionQuery);
         for (int i = 1; i < 5; i++) {
-            System.out.println("Enter option " + i + " : ");
+            System.out.print("Enter option " + i + " : ");
             question.getOptions().add(scanner.nextLine());
         }
-        System.out.println("Enter correct option (1 - 4)");
+        System.out.print("Enter correct option (1 - 4)");
         question.setAnswerkey(scanner.nextInt());
         scanner.nextLine();
         if (AdminOperations.addQuestion(question)) {
-            System.out.println("Successfully added the question. Total questions present now = " + AdminOperations.getCountOfQuestionsAdded());
+            System.out.println("Total questions : " + AdminOperations.getCountOfQuestionsAdded());
+            return true;
         } else {
             System.out.println("Failed in adding the question.Please retry.");
+            return false;
         }
     }
 
