@@ -1,8 +1,8 @@
-create schema quizdb;
+CREATE SCHEMA IF NOT EXISTS quizdb;
 use quizdb;
 
-create table students(
-    id int not null auto_increment primary key,
+CREATE TABLE IF NOT EXISTS students(
+    id int not null auto_increment primary key ,
     firstname char(25) not null,
     lastname char(25) not null,
     username char(25) not null unique,
@@ -11,7 +11,8 @@ create table students(
     email char(255),
     mobileno bigint
 );
-create table questions(
+
+CREATE TABLE IF NOT EXISTS questions(
     id int not null auto_increment primary key ,
     query varchar(5000) not null ,
     option1 text(5000),
@@ -21,7 +22,7 @@ create table questions(
     answerkey int not null
 );
 
-create table quizscore(
+create table IF NOT EXISTS quizscore(
     id int not null auto_increment primary key,
     studentid int unique,
     score int,
