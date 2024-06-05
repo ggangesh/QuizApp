@@ -24,7 +24,6 @@ public class StudentOperations {
             preparedStmt.setString(6, email);
             preparedStmt.setLong(7, mobileno);
             int i = preparedStmt.executeUpdate();
-            System.out.println("Execute done" + i);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -43,11 +42,10 @@ public class StudentOperations {
         Connection connection = (new DBConnectionImpl()).getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
-            preparedStatement = connection.prepareStatement(selectQuery);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 id = resultSet.getInt(1);
             }
         } catch (Exception e) {
@@ -64,7 +62,7 @@ public class StudentOperations {
             PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
             preparedStatement.setInt(1, studentId);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 score = resultSet.getInt("score");
             }
         } catch (Exception e) {
@@ -98,7 +96,7 @@ public class StudentOperations {
         return mcqs;
     }
 
-    public static void storeQuizResult(int studentId,int score){
+    public static void storeQuizResult(int studentId, int score) {
         try {
             Connection connection = (new DBConnectionImpl()).getConnection();
             String query = "insert into quizscore (studentid, score) VALUES (?, ?)";
